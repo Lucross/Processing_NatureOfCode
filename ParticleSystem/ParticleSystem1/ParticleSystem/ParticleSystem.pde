@@ -21,7 +21,6 @@ void draw(){
       particles.remove(i);
     }
   }
-
   
  //if(p.isDead())
   

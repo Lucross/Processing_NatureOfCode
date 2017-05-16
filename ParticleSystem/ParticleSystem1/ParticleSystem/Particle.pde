@@ -9,6 +9,7 @@ class Particle{
   
   Particle(){
     location = new PVector(width/2, 50);
+
     velocity = new PVector(random(-1,1), random(-1,1));
     acceleration = new PVector(0,0.05);
     mass = 1;
