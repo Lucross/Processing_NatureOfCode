@@ -7,8 +7,8 @@ class Particle{
   
   float lifeSpan = 255;
   
-  Particle(){
-    location = new PVector(width/2, 50);
+  Particle(PVector o){
+    location = new PVector(o.x, o.y);
 
     velocity = new PVector(random(-1,1), random(-1,1));
     acceleration = new PVector(0,0.05);
