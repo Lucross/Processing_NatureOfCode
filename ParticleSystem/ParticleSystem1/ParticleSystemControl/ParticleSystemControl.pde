@@ -1,8 +1,10 @@
  ArrayList<ParticleSystem> psList;
+ PVector gravity;
  
    void setup(){
     size(640, 360);
     psList = new ArrayList<ParticleSystem>();
+    gravity = new PVector(0,0.05);
   }
   
   void draw(){
@@ -10,7 +12,7 @@
     
     for(ParticleSystem ps : psList){
       ps.addParticle();
-      
+      ps.applyForce(gravity);
       ps.run();
     }
   } 

@@ -23,7 +23,7 @@ class Particle{
   void update(){
     velocity.add(acceleration);
     location.add(velocity);
-    //acceleration.mult(0);
+    acceleration.mult(0);
     
     lifeSpan -= 2;
   }

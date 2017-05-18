@@ -25,7 +25,15 @@ class ParticleSystem{
   }
   
   void addParticle(){
-    particles.add(new Particle(origin));
+    if(random(-1,1) < 0)
+      particles.add(new SquareParticle(origin));
+    else
+      particles.add(new Particle(origin));
+  }
+  
+  void applyForce(PVector force){
+    for(Particle p : particles)
+      p.acceleration.add(force);
   }
 
 
