@@ -3,10 +3,10 @@ class Slither extends Mover{
   Slither(){
   
     super();
-    location = new PVector(width/4, height/4);
+    location = new PVector(random(0, width), random(height));
     hunger = 0;
-    timeX = 0;
-    timeY = 0;
+    timeX = random(0,1000);
+    timeY = random(0,1000);
   }
   
   void move(){
@@ -38,6 +38,17 @@ class Slither extends Mover{
   }
   
   PVector attract(Mover m){
+    
+    if(m instanceof Slither){
+      PVector f = PVector.sub(m.location, location);
+      float distance = f.mag();
+      distance = constrain(distance,5,25);
+      float strength = (1*mass*m.mass)/(distance*distance);
+      strength *= 2;
+      f.normalize();   
+      f.mult(strength);
+      return f;
+    }
     return super.attract(m);
   }
   
@@ -48,11 +59,23 @@ class Slither extends Mover{
       float distance = f.mag();
       distance = constrain(distance,5,25);
       float strength = (1*mass*m.mass)/(distance*distance);
-      strength *= 5;
+      strength *= 2;
       f.normalize();   
       f.mult(strength);
       f.rotate(PI);
       return f;
+    }else if(m instanceof Slither){
+      if(dist(m.location.x, m.location.y, location.x, location.y)<10){
+        PVector f = PVector.sub(m.location, location);
+        float distance = f.mag();
+        distance = constrain(distance,5,25);
+        float strength = (1*mass*m.mass)/(distance*distance);
+        strength *= 2;
+        f.normalize();   
+        f.mult(strength);
+        f.rotate(PI);
+        return f;
+      }
     }
     return super.repel(m);
   }

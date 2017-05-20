@@ -8,6 +8,8 @@ void setup(){
   size(640, 380);
   movers = new ArrayList<Mover>();
   movers.add(new Slither());
+  movers.add(new Slither());
+  movers.add(new Slither());
   movers.add(new Predator());
   f = new Food();
 }
@@ -29,7 +31,7 @@ void draw(){
     
     if(m instanceof Slither){
       PVector attractionF = f.attract(m);
-      //m.applyForce(attractionF); 
+      m.applyForce(attractionF); 
     }
       
     m.move();

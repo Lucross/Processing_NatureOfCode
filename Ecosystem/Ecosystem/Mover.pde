@@ -10,10 +10,13 @@ abstract class Mover{
   float timeX;
   float timeY;
   
+  Oscillator osc;
+  
   Mover(){
     velocity = new PVector(0,0);
     acceleration = new PVector(0,0);
     mass = 10;
+    osc = new Oscillator(mass*2);
   }
   
   void edges(){

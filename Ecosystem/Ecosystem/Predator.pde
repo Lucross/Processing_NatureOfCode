@@ -21,11 +21,24 @@ class Predator extends Mover{
     velocity.limit(3);    
     
     acceleration.mult(0);
+    
+    osc.update(velocity.mag()/10);
   }
   
   void display(){
     super.display(45);
     rect(location.x, location.y, 8, 8);
+    
+    float angle = velocity.heading2D();
+    pushMatrix();
+    translate(location.x,location.y);
+    rotate(angle);
+    rectMode(CENTER);
+    //stroke(0);
+    //fill(175,100);
+//ellipse(0,0,mass*2,mass*2);
+    osc.display(location);
+    popMatrix();
   }
   
   PVector attract(Mover m){
@@ -35,7 +48,7 @@ class Predator extends Mover{
       float distance = f.mag();
       distance = constrain(distance,5,25);
       float strength = (1*mass*m.mass)/(distance*distance);
-      strength *= 5;
+      strength *= 1.5;
       f.normalize();   
       f.mult(strength);
       return f;
